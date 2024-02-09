@@ -24,7 +24,7 @@ export const apiSlice = createApi({
         }
         return result;
     },
-    tagTypes: ["Notification", "Profile","Users", "Doctors", "Requests"], //TagS WhiteLists
+    tagTypes: ["Users"], //TagS WhiteLists
     endpoints: (builder) => ({}),
 })
 

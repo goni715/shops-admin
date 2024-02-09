@@ -52,7 +52,7 @@ export const authApi = apiSlice.injectEndpoints({
                     setTimeout(()=>{
                         //window.location.href="/inbox";
                     },200)
-                    
+
                 }catch(err) {
                     const status = err?.error?.status;
                     if(status === 404){

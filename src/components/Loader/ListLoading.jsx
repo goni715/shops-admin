@@ -36,6 +36,22 @@ const ListLoading = () => {
                     <div className="text-lg font-semibold">
                     </div>
                 </div>
+                <div className="bg-slate-200 h-[40px]  text-white font-bold py-2 px-4 rounded-lg shadow-md">
+                    <div className="text-lg font-semibold">
+                    </div>
+                </div>
+                <div className="bg-slate-200 h-[40px]  text-white font-bold py-2 px-4 rounded-lg shadow-md">
+                    <div className="text-lg font-semibold">
+                    </div>
+                </div>
+                <div className="bg-slate-200 h-[40px]  text-white font-bold py-2 px-4 rounded-lg shadow-md">
+                    <div className="text-lg font-semibold">
+                    </div>
+                </div>
+                <div className="bg-slate-200 h-[40px]  text-white font-bold py-2 px-4 rounded-lg shadow-md">
+                    <div className="text-lg font-semibold">
+                    </div>
+                </div>
             </div>
         </>
     );

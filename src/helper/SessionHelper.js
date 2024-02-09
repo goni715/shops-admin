@@ -17,15 +17,6 @@ class SessionHelper {
     }
 
 
-    //notification length
-    setNotification(x){
-        localStorage.setItem("notification", x);
-    }
-
-    getNotification(){
-        return localStorage.getItem("notification");
-    }
-
     logout(){
         localStorage.clear();
         window.location.href="/login"
@@ -34,4 +25,4 @@ class SessionHelper {
 }
 
 
-export const {setToken, getToken, setUserDetails, getUserDetails, setNotification, getNotification, logout} = new SessionHelper();
+export const {setToken, getToken, setUserDetails, getUserDetails, logout} = new SessionHelper();
