@@ -7,6 +7,7 @@ export const userApi = apiSlice.injectEndpoints({
     endpoints: (builder) => ({
         getUsers: builder.query({
             query: () => `/user/get-all-user`,
+            providesTags: ["Users"],
             keepUnusedDataFor: 600,
             async onQueryStarted(arg, {queryFulfilled, dispatch}){
                 try{

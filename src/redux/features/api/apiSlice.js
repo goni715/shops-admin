@@ -1,5 +1,4 @@
 import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/query/react";
-import {ErrorToast} from "../../../helper/ValidationHelper.js";
 import {getToken} from "../../../helper/SessionHelper.js";
 
 const baseQuery = fetchBaseQuery({
@@ -19,12 +18,12 @@ export const apiSlice = createApi({
         let result = await baseQuery(args, api, extraOptions);
         if (result?.error?.status === 401) {
             localStorage.clear();
-            ErrorToast("Token Expired");
+            // ErrorToast("Token Expired");
             window.location.href="/";
         }
         return result;
     },
-    tagTypes: ["Users"], //TagS WhiteLists
+    tagTypes: ["Users", "CategoryList"], //TagS WhiteLists
     endpoints: (builder) => ({}),
 })
 
