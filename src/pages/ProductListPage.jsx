@@ -1,5 +1,5 @@
 import Layout from "../components/Layout/Layout.jsx";
-import ProductList from "../components/ProductList.jsx";
+import ProductList from "../components/Product/ProductList.jsx";
 
 
 const ProductListPage = () => {

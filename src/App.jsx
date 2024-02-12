@@ -7,6 +7,8 @@ import PublicRoute from "./routes/PublicRoute.jsx";
 import UserListPage from "./pages/UserListPage.jsx";
 import CategoryListPage from "./pages/CategoryListPage.jsx";
 import ProductListPage from "./pages/ProductListPage.jsx";
+import ProductCreatePage from "./pages/ProductCreatePage.jsx";
+import ProductEditPage from "./pages/ProductEditPage.jsx";
 
 
 
@@ -22,6 +24,8 @@ const App = () => {
                      <Route path="/users" element={<PrivateRoute> <UserListPage/></PrivateRoute>} />
                      <Route path="/category-list" element={<PrivateRoute> <CategoryListPage/> </PrivateRoute>} />
                      <Route path="/product-list" element={<PrivateRoute> <ProductListPage/> </PrivateRoute>} />
+                     <Route path="/create-product" element={<PrivateRoute> <ProductCreatePage/> </PrivateRoute>} />
+                     <Route path="/update-product/:id" element={<PrivateRoute> <ProductEditPage/> </PrivateRoute>} />
 
 
                      <Route path="/register" element={<PublicRoute> <Register/> </PublicRoute>}/>

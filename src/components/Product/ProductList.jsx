@@ -1,9 +1,13 @@
 import {Table} from "antd";
-import ListLoading from "./Loader/ListLoading.jsx";
-import {useGetCategoriesQuery} from "../redux/features/category/categoryApi.js";
+import ListLoading from "../Loader/ListLoading.jsx";
 import {FaEdit} from "react-icons/fa";
 import {AiFillDelete} from "react-icons/ai";
-import {useGetProductsQuery} from "../redux/features/product/productApi.js";
+import {useGetProductsQuery} from "../../redux/features/product/productApi.js";
+import {Link} from "react-router-dom";
+import {SetProductDeleteModalOpen} from "../../redux/features/modal/modalSlice.js";
+import {useDispatch} from "react-redux";
+import {SetProductId} from "../../redux/features/product/productSlice.js";
+import ProductDeleteModal from "../modal/ProductDeleteModal.jsx";
 
 const columns = [
     {
@@ -33,6 +37,7 @@ const columns = [
 ]
 
 const ProductList = () => {
+    const dispatch = useDispatch();
     const {data, isLoading, isError, error} = useGetProductsQuery();
     const products = data?.data || [];
 
@@ -66,12 +71,17 @@ const ProductList = () => {
                 action: (
                     <>
                         <div className="flex gap-4">
-                            <button
+                            <Link
+                                to={`/update-product/${products[i]?._id}`}
                                 className="bg-green-500 hover:bg-green-700 px-2 py-2 text-white font-bold text-md rounded-md">
                                 <FaEdit size={25}/>
-                            </button>
+                            </Link>
 
                             <button
+                                onClick={()=>{
+                                    dispatch(SetProductId(products[i]?._id))
+                                    dispatch(SetProductDeleteModalOpen(true));
+                                }}
                                 className="bg-red-500 hover:bg-red-700 px-2 py-2 text-white font-bold text-md rounded-md">
                                 <AiFillDelete size={25}/>
                             </button>
@@ -100,6 +110,8 @@ const ProductList = () => {
                     )
                 }
             </div>
+
+            <ProductDeleteModal/>
         </>
     );
 };

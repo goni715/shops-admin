@@ -22,6 +22,11 @@ export const SidebarMenu = [
         icon: MdCategory,
     },
     {
+        name: "Create Product",
+        path: "/create-product",
+        icon: RiProductHuntLine,
+    },
+    {
         name: "Product List",
         path: "/product-list",
         icon: RiProductHuntLine,

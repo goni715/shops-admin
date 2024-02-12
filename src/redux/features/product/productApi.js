@@ -1,11 +1,12 @@
 import {apiSlice} from "../api/apiSlice.js";
-import {ErrorToast} from "../../../helper/ValidationHelper.js";
+import {ErrorToast, SuccessToast} from "../../../helper/ValidationHelper.js";
 
 
 export const productApi = apiSlice.injectEndpoints({
     endpoints: (builder) => ({
         getProducts: builder.query({
             query: () => `/product/get-all-product`,
+            providesTags: ["Products"],
             keepUnusedDataFor: 600,
             async onQueryStarted(arg, {queryFulfilled}){
                 try{
@@ -17,8 +18,91 @@ export const productApi = apiSlice.injectEndpoints({
                 }
             },
         }),
+        getProduct: builder.query({
+            query: (id) => `/product/get-product/${id}`,
+            providesTags: (result, error, arg) => [
+                {type: "Product", id:arg}, //Dynamic Tag
+            ],
+            keepUnusedDataFor:600,
+            async onQueryStarted(arg, {queryFulfilled, }){
+                try{
+                    const res = await queryFulfilled;
+                    // const data = res?.data?.data;
+                }catch(err) {
+                    ErrorToast("Something Went Wrong!");
+                    //do nothing
+                    console.log(err);
+                }
+            },
+        }),
+        createProduct: builder.mutation({
+            query: (data) => ({
+                url: "/product/create-product",
+                method: "POST",
+                body: data
+            }),
+            invalidatesTags: ["Products"],
+            async onQueryStarted(arg, {queryFulfilled}){
+                try{
+                    const res = await queryFulfilled;
+                    if(res?.data?.message === "success"){
+                        SuccessToast("Product Create Success");
+                    }
+                }catch(err) {
+                    console.log(err)
+                    if(err?.error?.data?.data?.keyPattern){
+                        if(err?.error?.data?.data?.keyPattern['slug'] === 1){
+                            ErrorToast("Failled! Product Name Already Existed")
+                        }
+                    }
+                }
+            }
+        }),
+        updateProduct: builder.mutation({
+            query: ({id,data}) => ({
+                url: `/product/update-product/${id}`,
+                method: "PUT",
+                body: data
+            }),
+            invalidatesTags: (result, error, arg) => [
+                "Products",
+                {type: "Product", id:arg.id}, //Dynamic Tag
+            ],
+            async onQueryStarted(arg, {queryFulfilled}){
+                try{
+                    const res = await queryFulfilled;
+                    if(res?.data?.message === "success"){
+                        SuccessToast("Exchange Status Update Success");
+                    }
+                }catch(err) {
+                    console.log(err)
+                }
+            }
+        }),
+        deleteProduct: builder.mutation({
+            query: (id) => ({
+                url: `/product/delete-product/${id}`,
+                method: "DELETE"
+            }),
+            invalidatesTags: ["Products"],
+            async onQueryStarted(arg, {queryFulfilled}){
+                try{
+                    const res = await queryFulfilled;
+                    if(res?.data?.message === "success"){
+                        SuccessToast(" Success");
+                    }
+                }catch(err) {
+                    console.log(err);
+                    let status = err?.error?.status;
+                    if(status === 403){
+                        ErrorToast("Failld ! This category is associated with Product");
+                    }
+
+                }
+            }
+        }),
     }),
 })
 
 
-export const {useGetProductsQuery} = productApi;
+export const {useGetProductsQuery,useGetProductQuery, useCreateProductMutation, useUpdateProductMutation, useDeleteProductMutation} = productApi;

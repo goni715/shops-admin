@@ -4,6 +4,7 @@ import authSliceReducer from "../features/auth/authSlice.js";
 import userSliceReducer from "../features/user/userSlice.js";
 import modalSliceReducer from "../features/modal/modalSlice.js";
 import categorySliceReducer from "../features/category/categorySlice.js";
+import productSliceReducer from "../features/product/productSlice.js";
 
 
 const store = configureStore({
@@ -12,7 +13,8 @@ const store = configureStore({
         auth: authSliceReducer,
         user: userSliceReducer,
         modal: modalSliceReducer,
-        category: categorySliceReducer
+        category: categorySliceReducer,
+        product: productSliceReducer
     },
     middleware: (getDefaultMiddleware)=>
         getDefaultMiddleware().concat(apiSlice.middleware)

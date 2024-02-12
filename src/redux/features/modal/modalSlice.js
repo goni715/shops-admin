@@ -3,6 +3,7 @@ const initialState = {
     categoryEditModalOpen: false,
     categoryDeleteModalOpen: false,
     categoryCreateModalOpen: false,
+    productDeleteModalOpen: false,
 }
 
 const modalSlice = createSlice({
@@ -18,12 +19,15 @@ const modalSlice = createSlice({
         SetCategoryCreateModalOpen:(state,action)=>{
             state.categoryCreateModalOpen=action.payload
         },
+        SetProductDeleteModalOpen:(state,action)=>{
+            state.productDeleteModalOpen=action.payload
+        },
     }
 
 })
 
 
-export const {SetCategoryEditModalOpen, SetCategoryDeleteModalOpen, SetCategoryCreateModalOpen} = modalSlice.actions;
+export const {SetCategoryEditModalOpen, SetCategoryDeleteModalOpen, SetCategoryCreateModalOpen, SetProductDeleteModalOpen} = modalSlice.actions;
 
 const modalSliceReducer = modalSlice.reducer;
 export default modalSliceReducer;

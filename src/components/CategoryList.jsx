@@ -78,7 +78,7 @@ const CategoryList = () => {
                                 dispatch(SetCategoryId(categories[i]?._id))
                                 dispatch(SetCategoryDeleteModalOpen(true));
                             }}
-                            className="ml-3 bg-red-500 hover:bg-red-700 px-2 py-2 text-white font-bold text-md rounded-md">
+                            className="bg-red-500 hover:bg-red-700 px-2 py-2 text-white font-bold text-md rounded-md">
                             <AiFillDelete size={25}/>
                         </button>
                     </>

@@ -1,33 +1,33 @@
 import {useDispatch, useSelector} from "react-redux";
 import {Modal} from "antd";
-import {SetCategoryDeleteModalOpen} from "../../redux/features/modal/modalSlice.js";
-import {useDeleteCategoryMutation} from "../../redux/features/category/categoryApi.js";
+import {SetProductDeleteModalOpen} from "../../redux/features/modal/modalSlice.js";
 import {useEffect} from "react";
+import {useDeleteProductMutation} from "../../redux/features/product/productApi.js";
 
 
-const CategoryDeleteModal = () => {
+const ProductDeleteModal = () => {
     const dispatch = useDispatch();
-    const modalOpen = useSelector((state)=>state.modal.categoryDeleteModalOpen);
-    const {categoryId} = useSelector(state=>state.category);
-    const [deleteCategory, {isSuccess,isLoading}] = useDeleteCategoryMutation();
+    const modalOpen = useSelector((state)=>state.modal.productDeleteModalOpen);
+    const {productId} = useSelector(state=>state.product);
+    const [deleteProduct, {isSuccess,isLoading}] = useDeleteProductMutation();
 
 
     const handleOk = () => {
-        dispatch(SetCategoryDeleteModalOpen(false));
+        dispatch(SetProductDeleteModalOpen(false));
     };
     const handleCancel = () => {
-        dispatch(SetCategoryDeleteModalOpen(false));
+        dispatch(SetProductDeleteModalOpen(false));
     };
 
     useEffect(()=>{
         if(isSuccess){
-            dispatch(SetCategoryDeleteModalOpen(false));
+            dispatch(SetProductDeleteModalOpen(false));
         }
     },[isSuccess, dispatch])
 
 
     const handleDelete = () => {
-        deleteCategory(categoryId);
+        deleteProduct(productId);
     }
 
     return (
@@ -48,4 +48,4 @@ const CategoryDeleteModal = () => {
     );
 };
 
-export default CategoryDeleteModal;
+export default ProductDeleteModal;
