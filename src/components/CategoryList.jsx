@@ -95,7 +95,7 @@ const CategoryList = () => {
                 <h1 className="text-center text-3xl font-bold mb-3">Category List</h1>
 
                 {
-                    isLoading ? (
+                    isLoading===false ? (
                         <>
                             <ListLoading/>
                         </>
