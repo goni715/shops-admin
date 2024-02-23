@@ -9,6 +9,7 @@ import CategoryListPage from "./pages/CategoryListPage.jsx";
 import ProductListPage from "./pages/ProductListPage.jsx";
 import ProductCreatePage from "./pages/ProductCreatePage.jsx";
 import ProductEditPage from "./pages/ProductEditPage.jsx";
+import FullScreenLoader from "./components/Loader/FullScreenLoader.jsx";
 
 
 
@@ -18,6 +19,7 @@ const App = () => {
 
     return (
         <>
+
              <BrowserRouter>
                  <Routes>
                      <Route path="/" element={<PrivateRoute> <HomePage/> </PrivateRoute>} />
@@ -32,6 +34,8 @@ const App = () => {
                      <Route path="/login" element={<PublicRoute> <Login/> </PublicRoute>}/>
                  </Routes>
             </BrowserRouter>
+            <FullScreenLoader/>
+
         </>
     );
 };

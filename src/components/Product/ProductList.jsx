@@ -8,6 +8,7 @@ import {SetProductDeleteModalOpen} from "../../redux/features/modal/modalSlice.j
 import {useDispatch} from "react-redux";
 import {SetProductId} from "../../redux/features/product/productSlice.js";
 import ProductDeleteModal from "../modal/ProductDeleteModal.jsx";
+import product_img from "../../assets/image/product.png"
 
 const columns = [
     {
@@ -42,17 +43,6 @@ const ProductList = () => {
     const products = data?.data || [];
 
 
-    //decision how to render
-    let content = null;
-
-
-    if (!isLoading && isError) {
-        content = (
-            <h1>some error occured</h1>
-        );
-
-    }
-
     const tableData = [];
 
 
@@ -63,7 +53,8 @@ const ProductList = () => {
                 name: products[i]?.productName,
                 image: (
                     <>
-                        <img className="w-[60px] h-[60px]" src={products[i]?.image1} alt=""/>
+
+                        <img className="w-[60px] h-[60px]" src={products[i]?.image?.image_url || product_img} alt="product_img" />
                     </>
                 ),
                 category: products[i]?.categoryName,

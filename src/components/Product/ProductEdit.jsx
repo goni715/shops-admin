@@ -27,7 +27,7 @@ const ProductEdit = () => {
             <>
                 <div>
                     <h1 className="text-center text-2xl font-bold py-6">Update Product</h1>
-                    <EditForm data={product}/>
+                    <EditForm product={product}/>
                 </div>
             </>
         )

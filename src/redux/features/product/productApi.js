@@ -1,5 +1,6 @@
 import {apiSlice} from "../api/apiSlice.js";
 import {ErrorToast, SuccessToast} from "../../../helper/ValidationHelper.js";
+import {HideLoader, ShowLoader} from "../settings/settingsSlice.js";
 
 
 export const productApi = apiSlice.injectEndpoints({
@@ -39,7 +40,7 @@ export const productApi = apiSlice.injectEndpoints({
             query: (data) => ({
                 url: "/product/create-product",
                 method: "POST",
-                body: data
+                body: data,
             }),
             invalidatesTags: ["Products"],
             async onQueryStarted(arg, {queryFulfilled}){
@@ -72,9 +73,64 @@ export const productApi = apiSlice.injectEndpoints({
                 try{
                     const res = await queryFulfilled;
                     if(res?.data?.message === "success"){
-                        SuccessToast("Exchange Status Update Success");
+                        SuccessToast("Update Success");
                     }
                 }catch(err) {
+                    console.log(err)
+                    if(err?.error?.data?.data?.keyPattern){
+                        if(err?.error?.data?.data?.keyPattern['slug'] === 1){
+                            ErrorToast("Failled! Product Name Already Existed")
+                        }
+                    }
+                }
+            }
+        }),
+        updateProductWithImage: builder.mutation({
+            query: ({id,data}) => ({
+                url: `/product/update-product-with-image/${id}`,
+                method: "PUT",
+                body: data
+            }),
+            invalidatesTags: (result, error, arg) => [
+                "Products",
+                {type: "Product", id:arg.id}, //Dynamic Tag
+            ],
+            async onQueryStarted(arg, {queryFulfilled}){
+                try{
+                    const res = await queryFulfilled;
+                    if(res?.data?.message === "success"){
+                        SuccessToast("Update Success");
+                    }
+                }catch(err) {
+                    console.log(err)
+                    if(err?.error?.data?.data?.keyPattern){
+                        if(err?.error?.data?.data?.keyPattern['slug'] === 1){
+                            ErrorToast("Failled! Product Name Already Existed")
+                        }
+                    }
+                }
+            }
+        }),
+        deleteProductImage: builder.mutation({
+            query: ({id,data}) => ({
+                url: `/product/delete-product-image/${id}`,
+                method: "PUT",
+                body: data
+            }),
+            invalidatesTags: (result, error, arg) => [
+                "Products",
+                {type: "Product", id:arg.id}, //Dynamic Tag
+            ],
+            async onQueryStarted(arg, {queryFulfilled, dispatch}){
+                try{
+                    dispatch(ShowLoader())
+                    const res = await queryFulfilled;
+                    dispatch(HideLoader());
+                    if(res?.data?.message === "success"){
+                        // SuccessToast("Image Delete Success");
+                    }
+                }catch(err) {
+                    dispatch(HideLoader());
                     console.log(err)
                 }
             }
@@ -105,4 +161,4 @@ export const productApi = apiSlice.injectEndpoints({
 })
 
 
-export const {useGetProductsQuery,useGetProductQuery, useCreateProductMutation, useUpdateProductMutation, useDeleteProductMutation} = productApi;
+export const {useGetProductsQuery,useGetProductQuery, useCreateProductMutation, useUpdateProductMutation, useUpdateProductWithImageMutation, useDeleteProductImageMutation, useDeleteProductMutation} = productApi;

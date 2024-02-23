@@ -34,7 +34,7 @@ export const categoryApi = apiSlice.injectEndpoints({
                 }catch(err) {
                     console.log(err)
                     if(err?.error?.data?.data?.keyPattern){
-                        if(err?.error?.data?.data?.keyPattern['categoryName'] === 1){
+                        if(err?.error?.data?.data?.keyPattern['slug'] === 1){
                             ErrorToast("Failled! This Category Already Created")
                         }
                     }
@@ -57,7 +57,7 @@ export const categoryApi = apiSlice.injectEndpoints({
                 }catch(err) {
                     console.log(err)
                     if(err?.error?.data?.data?.keyPattern){
-                        if(err?.error?.data?.data?.keyPattern['categoryName'] === 1){
+                        if(err?.error?.data?.data?.keyPattern['slug'] === 1){
                             ErrorToast("Failld! This Category Already Existed")
                         }
                     }
