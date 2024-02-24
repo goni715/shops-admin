@@ -1,4 +1,4 @@
-import {useGetUsersQuery} from "../redux/features/user/userApi.js";
+import {useGetUsersQuery, useMakeAdminMutation, useRemoveAdminMutation} from "../redux/features/user/userApi.js";
 import {Table} from "antd";
 import ListLoading from "./Loader/ListLoading.jsx";
 
@@ -28,18 +28,19 @@ const columns = [
 const UserList = () => {
     const {data, isLoading, isError, error} = useGetUsersQuery();
     const users = data?.data || [];
+    const [makeAdmin,{isLoading:loading}] = useMakeAdminMutation();
+    const [removeAdmin, {isLoading:removeLoading}] = useRemoveAdminMutation();
 
 
-    //decision how to render
-    let content = null;
-
-
-    if (!isLoading && isError) {
-        content = (
-            <h1>some error occured</h1>
-        );
-
+    //update status
+    const handleMakeAdmin = (id) => {
+        makeAdmin(id)
     }
+
+    const handleRemoveAdmin = (id) => {
+        removeAdmin(id)
+    }
+
 
     const tableData = [];
 
@@ -53,9 +54,17 @@ const UserList = () => {
                 role: users[i]?.role,
                 action: (
                     <>
-                        <button className="ml-3 bg-red-500 hover:bg-red-700 px-3 py-2 text-white font-bold text-md rounded-md">
-                           Block
-                        </button>
+                        {users[i]?.role ==="user" ? (
+                            <button disabled={loading} onClick={()=>handleMakeAdmin(users[i]?._id)} className="bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded">
+                                Make Admin
+                            </button>
+                        ) : (
+                            <button disabled={removeLoading} onClick={()=>handleRemoveAdmin(users[i]?._id)} className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
+                                Remove Admin
+                            </button>
+                        )
+                        }
+
                     </>
                 ),
             });
