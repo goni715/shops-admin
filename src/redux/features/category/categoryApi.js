@@ -47,7 +47,7 @@ export const categoryApi = apiSlice.injectEndpoints({
                 method: "PUT",
                 body: data
             }),
-            invalidatesTags: ["CategoryList"],
+            invalidatesTags: ["CategoryList", "Products",],
             async onQueryStarted(arg, {queryFulfilled}){
                 try{
                     const res = await queryFulfilled;
@@ -69,7 +69,7 @@ export const categoryApi = apiSlice.injectEndpoints({
                 url: `/category/delete-category/${id}`,
                 method: "DELETE"
             }),
-            invalidatesTags: ["CategoryList"],
+            invalidatesTags: ["CategoryList", "Products"],
             async onQueryStarted(arg, {queryFulfilled}){
                 try{
                     const res = await queryFulfilled;
