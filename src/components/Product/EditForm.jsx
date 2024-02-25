@@ -6,7 +6,6 @@ import {
     useDeleteProductImageMutation, useUpdateProductMutation,
     useUpdateProductWithImageMutation
 } from "../../redux/features/product/productApi.js";
-import {ErrorToast} from "../../helper/ValidationHelper.js";
 import {useNavigate} from "react-router-dom";
 
 

@@ -1,5 +1,5 @@
 import {useEffect, useState} from "react";
-import {useLoginMutation} from "../redux/features/auth/authApi.js";
+import {useLoginMutation} from "../../redux/features/auth/authApi.js";
 import {useNavigate} from "react-router-dom";
 import {Spinner} from "@material-tailwind/react";
 

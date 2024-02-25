@@ -1,5 +1,3 @@
-import {useState} from "react";
-import {useGetCategoriesQuery} from "../../redux/features/category/categoryApi.js";
 import ProductLoading from "../Loader/ProductLoading.jsx";
 import {useGetProductQuery} from "../../redux/features/product/productApi.js";
 import EditForm from "./EditForm.jsx";

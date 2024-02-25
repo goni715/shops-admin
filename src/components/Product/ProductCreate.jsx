@@ -1,8 +1,7 @@
 import {useEffect, useState} from "react";
 import {useGetCategoriesQuery} from "../../redux/features/category/categoryApi.js";
-import product_img from "../../assets/image/mobile2.jpg";
 import convertToBase64 from "../../helper/convertToBase64.js";
-import {ErrorToast, SuccessToast} from "../../helper/ValidationHelper.js";
+import {ErrorToast} from "../../helper/ValidationHelper.js";
 import {useCreateProductMutation} from "../../redux/features/product/productApi.js";
 import {IoMdClose} from "react-icons/io";
 import {useNavigate} from "react-router-dom";

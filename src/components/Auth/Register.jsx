@@ -1,5 +1,5 @@
 import {useEffect, useState} from "react";
-import {useRegisterMutation} from "../redux/features/auth/authApi.js";
+import {useRegisterMutation} from "../../redux/features/auth/authApi.js";
 import {useNavigate} from "react-router-dom";
 
 const Register = () => {

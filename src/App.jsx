@@ -1,6 +1,6 @@
 import {BrowserRouter, Route, Routes} from "react-router-dom";
-import Register from "./components/Register.jsx";
-import Login from "./components/Login.jsx";
+import Register from "./components/Auth/Register.jsx";
+import Login from "./components/Auth/Login.jsx";
 import HomePage from "./pages/HomePage.jsx";
 import PrivateRoute from "./routes/PrivateRoute.jsx";
 import PublicRoute from "./routes/PublicRoute.jsx";
@@ -10,6 +10,7 @@ import ProductListPage from "./pages/ProductListPage.jsx";
 import ProductCreatePage from "./pages/ProductCreatePage.jsx";
 import ProductEditPage from "./pages/ProductEditPage.jsx";
 import FullScreenLoader from "./components/Loader/FullScreenLoader.jsx";
+import ContactListPage from "./pages/ContactListPage.jsx";
 
 
 
@@ -28,6 +29,7 @@ const App = () => {
                      <Route path="/product-list" element={<PrivateRoute> <ProductListPage/> </PrivateRoute>} />
                      <Route path="/create-product" element={<PrivateRoute> <ProductCreatePage/> </PrivateRoute>} />
                      <Route path="/update-product/:id" element={<PrivateRoute> <ProductEditPage/> </PrivateRoute>} />
+                     <Route path="/contact-list" element={<PrivateRoute> <ContactListPage/> </PrivateRoute>} />
 
 
                      <Route path="/register" element={<PublicRoute> <Register/> </PublicRoute>}/>

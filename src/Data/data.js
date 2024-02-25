@@ -1,6 +1,6 @@
 import {FaHome, FaUsers} from "react-icons/fa";
 import {RiProductHuntLine} from "react-icons/ri";
-import {MdCategory} from "react-icons/md";
+import {MdCategory, MdOutlineContactSupport} from "react-icons/md";
 
 
 
@@ -30,5 +30,10 @@ export const SidebarMenu = [
         name: "Product List",
         path: "/product-list",
         icon: RiProductHuntLine,
+    },
+    {
+        name: "Contact List",
+        path: "/contact-list",
+        icon: MdOutlineContactSupport,
     },
 ];
